@@ -1,0 +1,117 @@
+---
+title: "Conspiracy Code"
+output: html_notebook
+---
+
+This is the code that will read from Conspiracy Data.csv. It will create tables and graphs using the data found
+
+```{r}
+library(readr)
+library(dplyr)
+
+#Reads from Conspiracy Data.csv and stores in conspiracy table
+conspiracy <- read_csv("Conspiracy Data.csv") %>%
+  #filters out the failed validity test answers
+  filter(VCL6 == 0) %>%
+  filter(VCL9 == 0) %>%
+  filter(VCL12 == 0) %>%
+  
+  #filters out answers to conspiracy question not in the approved 1-5 scale
+  filter(Q1>0) %>%
+  filter(Q1<6) %>%
+  
+  filter(Q2>0) %>%
+  filter(Q2<6) %>%
+  
+  filter(Q3>0) %>%
+  filter(Q3<6) %>%
+  
+  filter(Q4>0) %>%
+  filter(Q4<6) %>%
+  
+  filter(Q5>0) %>%
+  filter(Q5<6) %>%
+  
+  filter(Q6>0) %>%
+  filter(Q6<6) %>%
+  
+  filter(Q7>0) %>%
+  filter(Q7<6) %>%
+  
+  filter(Q8>0) %>%
+  filter(Q8<6) %>%
+  
+  filter(Q9>0) %>%
+  filter(Q9<6) %>%
+  
+  filter(Q10>0) %>%
+  filter(Q10<6) %>%
+  
+  filter(Q11>0) %>%
+  filter(Q11<6) %>%
+  
+  filter(Q12>0) %>%
+  filter(Q12<6) %>%
+  
+  filter(Q13>0) %>%
+  filter(Q13<6) %>%
+  
+  filter(Q14>0) %>%
+  filter(Q14<6) %>%
+  
+  filter(Q15>0) %>%
+  filter(Q15<6) %>%
+  
+  #filters out personality values not in the approved 1-7 scale
+  filter(TIPI1>0) %>%
+  filter(TIPI1<8) %>%
+  
+  filter(TIPI2>0) %>%
+  filter(TIPI2<8) %>%
+  
+  filter(TIPI3>0) %>%
+  filter(TIPI3<8) %>%
+  
+  filter(TIPI4>0) %>%
+  filter(TIPI4<8) %>%
+  
+  filter(TIPI5>0) %>%
+  filter(TIPI5<8) %>%
+  
+  filter(TIPI6>0) %>%
+  filter(TIPI6<8) %>%
+  
+  filter(TIPI7>0) %>%
+  filter(TIPI7<8) %>%
+  
+  filter(TIPI8>0) %>%
+  filter(TIPI8<8) %>%
+  
+  filter(TIPI9>0) %>%
+  filter(TIPI9<8) %>%
+  
+  filter(TIPI10>0) %>%
+  filter(TIPI10<8) %>%
+  
+  #filters out any unrealistic ages, with any ages under 13 already removed
+  filter(age<100) %>%
+  
+  #filters out any unrealistic family sizes
+  filter(familysize>0) %>%
+  filter(familysize<20) %>%
+  
+  #filters out the rest of the columns with 0 values
+  filter(education>0) %>%
+  filter(urban>0) %>%
+  filter(gender>0) %>%
+  filter(engnat>0) %>%
+  filter(hand>0) %>%
+  filter(religion>0) %>%
+  filter(orientation>0) %>%
+  filter(race>0) %>%
+  filter(voted>0) %>%
+  filter(married>0)
+
+head(conspiracy, dim(conspiracy)[1])
+  
+```
