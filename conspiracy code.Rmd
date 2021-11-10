@@ -8,6 +8,7 @@ This is the code that will read from Conspiracy Data.csv. It will create tables 
 ```{r}
 library(readr)
 library(dplyr)
+library(tidyverse)
 
 #Reads from Conspiracy Data.csv and stores in conspiracy table
 conspiracy <- read_csv("Conspiracy Data.csv") %>%
@@ -110,8 +111,50 @@ conspiracy <- read_csv("Conspiracy Data.csv") %>%
   filter(orientation>0) %>%
   filter(race>0) %>%
   filter(voted>0) %>%
-  filter(married>0)
+  filter(married>0) %>%
+  
+  #creates a column for the sum of the question answers
+  mutate(QTotal = select(., Q1:Q2:Q3:Q4:Q5:Q6:Q7:Q8:Q9:Q10:Q11:Q12:Q13:Q14:Q15) %>%
+  rowSums(na.rm = T))
 
 head(conspiracy, dim(conspiracy)[1])
+
+#shows histogram for conspiracy belief for everyone
+par(mfrow=c(1,2))
+hist(conspiracy$QTotal, main = "Belief in Conspiracies", breaks=15)
+
+#creates table for people who haven't completed highschool
+less_than_highschool <- conspiracy %>%
+  filter(education == 1)
+
+#shows histogram for conspiracy belief for people who haven't completed highschool
+par(mfrow=c(1,2))
+hist(less_than_highschool$QTotal, main = "Belief in Conspiracies (<HS)", breaks=15)
+
+#creates table for people who have completed highschool
+highschool <- conspiracy %>%
+  filter(education == 2)
+
+#shows histogram for conspiracy belief for people who have completed highschool
+par(mfrow=c(1,2))
+hist(highschool$QTotal, main = "Belief in Conspiracies (HS)", breaks=15)
+
+#creates table for people who have completed university
+university <- conspiracy %>%
+  filter(education == 3)
+
+#shows histogram for conspiracy belief for people who have completed university
+par(mfrow=c(1,2))
+hist(university$QTotal, main = "Belief in Conspiracies (Uni)", breaks=15)
+
+#creates table for people who have completed graduate school
+graduate <- conspiracy %>%
+  filter(education == 4)
+
+#shows histogram for conspiracy belief for people who have completed graduate school
+par(mfrow=c(1,2))
+hist(graduate$QTotal, main = "Belief in Conspiracies (Grad)", breaks=15)
+
+#Notes: The more education a person has, the less likely they are to believe in conspiracies in general
   
 ```
