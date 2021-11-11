@@ -118,9 +118,11 @@ conspiracy <- read_csv("Conspiracy Data.csv") %>%
   rowSums(na.rm = T))
 
 head(conspiracy, dim(conspiracy)[1])
+```
 
+```{r}
 #shows histogram for conspiracy belief for everyone
-par(mfrow=c(1,2))
+par(mfrow=c(1,1))
 hist(conspiracy$QTotal, main = "Belief in Conspiracies", breaks=15)
 
 #creates table for people who haven't completed highschool
@@ -136,7 +138,6 @@ highschool <- conspiracy %>%
   filter(education == 2)
 
 #shows histogram for conspiracy belief for people who have completed highschool
-par(mfrow=c(1,2))
 hist(highschool$QTotal, main = "Belief in Conspiracies (HS)", breaks=15)
 
 #creates table for people who have completed university
@@ -144,7 +145,6 @@ university <- conspiracy %>%
   filter(education == 3)
 
 #shows histogram for conspiracy belief for people who have completed university
-par(mfrow=c(1,2))
 hist(university$QTotal, main = "Belief in Conspiracies (Uni)", breaks=15)
 
 #creates table for people who have completed graduate school
@@ -152,9 +152,112 @@ graduate <- conspiracy %>%
   filter(education == 4)
 
 #shows histogram for conspiracy belief for people who have completed graduate school
-par(mfrow=c(1,2))
 hist(graduate$QTotal, main = "Belief in Conspiracies (Grad)", breaks=15)
 
 #Notes: The more education a person has, the less likely they are to believe in conspiracies in general
   
+```
+
+```{r}
+#The histograms for individual questions for everyone
+
+par(mfrow=c(1,1))
+hist(conspiracy$Q1, main = "Belief in Conspiracies (Q1)", breaks=10)
+hist(conspiracy$Q2, main = "Belief in Conspiracies (Q2)", breaks=10)
+hist(conspiracy$Q3, main = "Belief in Conspiracies (Q3)", breaks=10)
+hist(conspiracy$Q4, main = "Belief in Conspiracies (Q4)", breaks=10)
+hist(conspiracy$Q5, main = "Belief in Conspiracies (Q5)", breaks=10)
+hist(conspiracy$Q6, main = "Belief in Conspiracies (Q6)", breaks=10)
+hist(conspiracy$Q7, main = "Belief in Conspiracies (Q7)", breaks=10)
+hist(conspiracy$Q8, main = "Belief in Conspiracies (Q8)", breaks=10)
+hist(conspiracy$Q9, main = "Belief in Conspiracies (Q9)", breaks=10)
+hist(conspiracy$Q10, main = "Belief in Conspiracies (Q10)", breaks=10)
+hist(conspiracy$Q11, main = "Belief in Conspiracies (Q11)", breaks=10)
+hist(conspiracy$Q12, main = "Belief in Conspiracies (Q12)", breaks=10)
+hist(conspiracy$Q13, main = "Belief in Conspiracies (Q13)", breaks=10)
+hist(conspiracy$Q14, main = "Belief in Conspiracies (Q14)", breaks=10)
+hist(conspiracy$Q15, main = "Belief in Conspiracies (Q15)", breaks=10)
+
+```
+
+```{r}
+
+#Shows histograms for individual education for each question, starting with question 1
+par(mfrow=c(1,2))
+hist(less_than_highschool$Q1, main = ">HS Q1", breaks=10)
+hist(highschool$Q1, main = "HS Q1", breaks=10)
+hist(university$Q1, main = "Uni Q1", breaks=10)
+hist(graduate$Q1, main = "Grad Q1", breaks=10)
+
+hist(less_than_highschool$Q2, main = ">HS Q2", breaks=10)
+hist(highschool$Q2, main = "HS Q2", breaks=10)
+hist(university$Q2, main = "Uni Q2", breaks=10)
+hist(graduate$Q2, main = "Grad Q2", breaks=10)
+
+hist(less_than_highschool$Q3, main = ">HS Q3", breaks=10)
+hist(highschool$Q3, main = "HS Q3", breaks=10)
+hist(university$Q3, main = "Uni Q3", breaks=10)
+hist(graduate$Q3, main = "Grad Q3", breaks=10)
+
+hist(less_than_highschool$Q4, main = ">HS Q4", breaks=10)
+hist(highschool$Q4, main = "HS Q4", breaks=10)
+hist(university$Q4, main = "Uni Q4", breaks=10)
+hist(graduate$Q4, main = "Grad Q4", breaks=10)
+
+hist(less_than_highschool$Q5, main = ">HS Q5", breaks=10)
+hist(highschool$Q5, main = "HS Q5", breaks=10)
+hist(university$Q5, main = "Uni Q5", breaks=10)
+hist(graduate$Q5, main = "Grad Q5", breaks=10)
+
+hist(less_than_highschool$Q6, main = ">HS Q6", breaks=10)
+hist(highschool$Q6, main = "HS Q6", breaks=10)
+hist(university$Q6, main = "Uni Q6", breaks=10)
+hist(graduate$Q6, main = "Grad Q6", breaks=10)
+
+hist(less_than_highschool$Q7, main = ">HS Q7", breaks=10)
+hist(highschool$Q7, main = "HS Q7", breaks=10)
+hist(university$Q7, main = "Uni Q7", breaks=10)
+hist(graduate$Q7, main = "Grad Q7", breaks=10)
+
+hist(less_than_highschool$Q8, main = ">HS Q8", breaks=10)
+hist(highschool$Q8, main = "HS Q8", breaks=10)
+hist(university$Q8, main = "Uni Q8", breaks=10)
+hist(graduate$Q8, main = "Grad Q8", breaks=10)
+
+hist(less_than_highschool$Q9, main = ">HS Q9", breaks=10)
+hist(highschool$Q9, main = "HS Q9", breaks=10)
+hist(university$Q9, main = "Uni Q9", breaks=10)
+hist(graduate$Q9, main = "Grad Q9", breaks=10)
+
+hist(less_than_highschool$Q10, main = " >HS Q10", breaks=10)
+hist(highschool$Q10, main = "HS Q10", breaks=10)
+hist(university$Q10, main = "Uni Q10", breaks=10)
+hist(graduate$Q10, main = "Grad Q10", breaks=10)
+
+hist(less_than_highschool$Q11, main = " >HS Q11", breaks=10)
+hist(highschool$Q11, main = "HS Q11", breaks=10)
+hist(university$Q11, main = "Uni Q11)", breaks=10)
+hist(graduate$Q11, main = "Grad Q11", breaks=10)
+
+hist(less_than_highschool$Q12, main = ">HS Q12", breaks=10)
+hist(highschool$Q12, main = "HS Q12", breaks=10)
+hist(university$Q12, main = "Uni Q12", breaks=10)
+hist(graduate$Q12, main = "Grad Q12", breaks=10)
+
+hist(less_than_highschool$Q13, main = ">HS Q13", breaks=10)
+hist(highschool$Q13, main = "HS Q13", breaks=10)
+hist(university$Q13, main = "Uni Q13", breaks=10)
+hist(graduate$Q13, main = "Grad Q13", breaks=10)
+
+hist(less_than_highschool$Q14, main = ">HS Q14", breaks=10)
+hist(highschool$Q14, main = "HS Q14", breaks=10)
+hist(university$Q14, main = "Uni Q14", breaks=10)
+hist(graduate$Q14, main = "Grad Q14", breaks=10)
+
+hist(less_than_highschool$Q15, main = ">HS Q15", breaks=10)
+hist(highschool$Q15, main = "HS Q15", breaks=10)
+hist(university$Q15, main = "Uni Q15", breaks=10)
+hist(graduate$Q15, main = "Grad Q15", breaks=10)
+
+
 ```
