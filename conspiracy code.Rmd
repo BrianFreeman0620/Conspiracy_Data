@@ -118,11 +118,24 @@ conspiracy <- read_csv("Conspiracy Data.csv") %>%
   rowMeans(na.rm = T)) %>%
   mutate_if(is.numeric, round)
 
+#Creates a new column for the word corresponding to the average belief
+conspiracy$QAveWord[conspiracy$QAve == 1] <- "Do Not Believe"
+conspiracy$QAveWord[conspiracy$QAve == 2] <- "Somewhat Do Not Believe"
+conspiracy$QAveWord[conspiracy$QAve == 3] <- "Unsure"
+conspiracy$QAveWord[conspiracy$QAve == 4] <- "Somewhat Believe"
+conspiracy$QAveWord[conspiracy$QAve == 5] <- "Believe"
+
+#Reorders average belief words
+conspiracy$QAveWord <- factor(conspiracy$QAveWord, c("Do Not Believe","Somewhat Do Not Believe", "Unsure", "Somewhat Believe", "Believe"))
+
 #Creates a new column for the word corresponding to the education level
-conspiracy$educationWord[conspiracy$education == 1] <- "less than high school"
-conspiracy$educationWord[conspiracy$education == 2] <- "high school"
-conspiracy$educationWord[conspiracy$education == 3] <- "university"
-conspiracy$educationWord[conspiracy$education == 4] <- "graduate"
+conspiracy$educationWord[conspiracy$education == 1] <- ">HS"
+conspiracy$educationWord[conspiracy$education == 2] <- "HS"
+conspiracy$educationWord[conspiracy$education == 3] <- "Uni"
+conspiracy$educationWord[conspiracy$education == 4] <- "Grad"
+
+#Reorders education level words
+conspiracy$educationWord <- factor(conspiracy$educationWord, c(">HS","HS", "Uni", "Grad"))
 
 #Creates a new column for the word corresponding to the living area
 conspiracy$urbanWord[conspiracy$urban == 1] <- "rural"
@@ -130,6 +143,12 @@ conspiracy$urbanWord[conspiracy$urban == 2] <- "suburban"
 conspiracy$urbanWord[conspiracy$urban == 3] <- "urban"
 
 head(conspiracy, dim(conspiracy)[1])
+```
+
+```{r}
+
+ggplot(conspiracy, aes(educationWord, fill=QAveWord)) + geom_bar()
+
 ```
 
 
@@ -188,6 +207,6 @@ age_table
 
 #Creates a scatterplot using age as X and number of age for a given average for Y and colors by average
 age_scatter <- ggplot(age_table, aes(age, age_count))
-age_scatter + geom_point(aes(color = format(QAve)))
+age_scatter + geom_point(aes(color = format(QAve))) + geom_smooth(se=FALSE, fullrange=TRUE)
 
 ```
