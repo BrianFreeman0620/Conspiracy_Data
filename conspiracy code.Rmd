@@ -147,7 +147,25 @@ head(conspiracy, dim(conspiracy)[1])
 
 ```{r}
 
+#Creates bar graphs for education and place grown up in
 ggplot(conspiracy, aes(educationWord, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(urbanWord, fill=QAveWord)) + geom_bar()
+
+```
+```{r}
+
+#Creates bar graphs for each personality
+#In order, the personalities are extraverted, critical, dependable, anxious, complex, reserved, sympathetic, careless, calm, uncreative
+ggplot(conspiracy, aes(TIPI1, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI2, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI3, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI4, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI5, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI6, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI7, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI8, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI9, fill=QAveWord)) + geom_bar()
+ggplot(conspiracy, aes(TIPI10, fill=QAveWord)) + geom_bar()
 
 ```
 
@@ -208,5 +226,19 @@ age_table
 #Creates a scatterplot using age as X and number of age for a given average for Y and colors by average
 age_scatter <- ggplot(age_table, aes(age, age_count))
 age_scatter + geom_point(aes(color = format(QAve))) + geom_smooth(se=FALSE, fullrange=TRUE)
+
+```
+```{r}
+
+#Creates a table grouping by family size and average belief
+family_table <- conspiracy %>%
+  group_by(familysize, QAve) %>%
+  dplyr::summarise(family_size_count = n())
+
+family_table
+
+#Creates a scatterplot using age as X and number of family size for a given average for Y and colors by average
+family_scatter <- ggplot(family_table, aes(familysize, family_size_count))
+family_scatter + geom_point(aes(color = format(QAve)))
 
 ```
